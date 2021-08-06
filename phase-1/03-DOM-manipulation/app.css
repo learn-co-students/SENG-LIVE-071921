@@ -1,0 +1,12 @@
+.header {
+    margin: auto;
+    width: 50%;
+    border: 3px solid rgb(98, 87, 161);
+    box-shadow: 5px 10px rgb(108, 103, 136);
+    padding: 10px;
+    text-align: center;
+  }
+    
+  .item {
+      list-style-type: none;
+  }
