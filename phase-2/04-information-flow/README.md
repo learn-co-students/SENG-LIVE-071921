@@ -1,4 +1,4 @@
-# React Data Flow
+# Information Flow in React
 
 ## Objectives
 
