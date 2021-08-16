@@ -1,6 +1,6 @@
 # Information Flow in React
 
-## Objectives
+## Goals
 
 - [ ] Review the Component Hierarchy and the flow of information through it
 - [ ] Pass data _up_ with callback functions, and _down_ with props
