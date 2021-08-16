@@ -3,8 +3,7 @@
 ## Goals
 
 - [ ] Explore the difference between controlled and uncontrolled inputs
-- [ ] Build a controlled form
-- [ ] Build both a Create form and a Search bar
+- [ ] Build a controlled Create form
 - [ ] Use form data to update state
 
 ## Objectives
@@ -14,8 +13,8 @@
   - Discuss why controlled forms are preferred
 - Segment 2: Build a Create Form
   - Continue building out Create form while emphasizing props, state, and callbacks
-- Segment 3: Build a Search Bar
-  - Build fully functional controlled Search bar
+- Segment 3: Additional Practice
+  - Practice building out controlled forms using onChange event listener
 
 ## Using Forms
 
