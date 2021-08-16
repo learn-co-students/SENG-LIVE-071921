@@ -9,8 +9,6 @@
 function CardForm({ handleAddCard, cards }){
     // Create states we will use to handle title and content
 
-    // Create a state (formData) to manage all of our form data
-
     // Create callback functions to manage the onChange behavior for each of our controlled inputs
     
     // function manageTitle(event) {
@@ -21,7 +19,9 @@ function CardForm({ handleAddCard, cards }){
     //     
     // }
 
-    // Create ONE callback function to manage the onChange behavior for any of our
+    // Extra Credit: Create a state (formData) to manage all of our form data
+
+    // Extra Credit: Create ONE callback function to manage the onChange behavior for any of our
     // controlled inputs
 
     function manageFormData(event) {
