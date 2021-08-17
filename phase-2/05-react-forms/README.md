@@ -3,8 +3,7 @@
 ## Goals
 
 - [ ] Explore the difference between controlled and uncontrolled inputs
-- [ ] Build a controlled form
-- [ ] Build both a Create form and a Search bar
+- [ ] Build a controlled Create form 
 - [ ] Use form data to update state
 
 ## Objectives
