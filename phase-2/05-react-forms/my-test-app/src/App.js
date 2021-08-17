@@ -50,6 +50,7 @@ function App() {
         lastName="Medina" 
       />
 
+      {/* Breakout Activity #2: Dynamically display a list of Added Cards as we continue to submit new Card entries. */}
       <CardForm 
         handleAddCard={handleAddCard}
         cards={cards}
@@ -57,7 +58,7 @@ function App() {
 
       {/* CardList Component */}
       <CardList 
-        cards={cards} 
+        cards={cards}
       />
     </div>
   );

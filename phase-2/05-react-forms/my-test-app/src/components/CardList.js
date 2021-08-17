@@ -1,7 +1,7 @@
 // Will accept an array of Card objects as props
 import Card from './Card';
 
-function CardList({ cards, handleAddCard }) {
+function CardList({ cards }) {
     // cards => props object
     // { cards } => props.cards
 
@@ -20,7 +20,6 @@ function CardList({ cards, handleAddCard }) {
                     />
                 );
             })}
-            <button onClick={handleAddCard}>Add New Card</button>
         </div>
     );
 }
