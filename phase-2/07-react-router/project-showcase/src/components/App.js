@@ -6,7 +6,7 @@ import ProjectList from "./ProjectList";
 import ProjectDetail from "./ProjectDetail";
 
 // react-router-dom Imports
-import { Route, Switch } from "react-router-dom";
+import { Route, Switch } from 'react-router-dom'; 
 
 function App() {
   const [projects, setProjects] = useState([]);
@@ -37,13 +37,32 @@ function App() {
         currentUser={currentUser}
         setCurrentUser={setCurrentUser}
       />
-      {/* wouldn't it be nice if these were separate pages? */}
+
       <Switch>
-        <Route path="/projects/new" component={() => <ProjectForm onAddProject={handleAddProject} />} />
-        <Route path="/projects/:id" component={() => <ProjectDetail />} />
-        <Route path="/projects" component={() => <ProjectList projects={projects} /> } />
-        <Route exact path="/" component={Home} />
+        <Route path="/projects/new">
+          <ProjectForm onAddProject={handleAddProject} />
+        </Route>
+
+        {/* Optional Self-Closing Route Syntax */}
+        {/* <Route path="/projects/new" component={
+          () => <ProjectForm onAddProject={handleAddProject} />
+        } />  */}
+        
+        <Route path="/projects/:id">
+          <ProjectDetail />
+        </Route>
+
+        <Route path="/projects">
+          <ProjectList projects={projects} />
+        </Route>
+
+        <Route path="/">
+          <Home />
+        </Route>
       </Switch>
+
+      {/* Individual Projects  */}
+      {/* <ProjectDetail /> */}
     </div>
   );
 }

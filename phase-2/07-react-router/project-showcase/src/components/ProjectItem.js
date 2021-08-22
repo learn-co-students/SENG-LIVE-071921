@@ -1,26 +1,18 @@
 import React, { useState } from "react";
 
 // react-router-dom Imports
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
 
 function ProjectItem({ project }) {
-  
-  // Pull ID of Project from props and
-  // create appropriate URL using it
-  const src = `/projects/${project.id}`
+  const [claps, setClaps] = useState(0);
 
-  //  Save Claps via localStorage (START)
+  const { id, image, name, about, phase } = project;
 
-  const [claps, setClaps] = useState(parseInt(localStorage.getItem(`claps-${project.id}`)) || 0);
-
-  const { image, name, about, phase } = project;
+  let path = `/projects/${id}`;
 
   function handleClapClick() {
     setClaps(claps + 1);
-    localStorage.setItem(`claps-${project.id}`, claps + 1)
   }
-
-  //  Save Claps via localStorage (END)
 
   return (
     <li className="card">
@@ -35,8 +27,9 @@ function ProjectItem({ project }) {
         <h4>{name}</h4>
         <p>{about}</p>
         <p>
-          <Link to={src}>
-            Details
+          {/* <em>Add a link to the detail page here</em> */}
+          <Link to={path}>
+            See More
           </Link>
         </p>
       </div>
