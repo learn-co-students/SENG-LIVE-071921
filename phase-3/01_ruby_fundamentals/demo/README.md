@@ -1,8 +1,23 @@
-# Dog Walker CLI Part 1
+# Ruby Fundamentals
 
-Welcome to ruby fundamentals! Over the next few weeks, we're going to be work on a dog walking application. As we introduce new features to it, we'll be using the concepts covered in the lessons and labs to demonstrate how they are applied to a real situation and put them to work! 
+Welcome to ruby fundamentals! For the first couple of phases, we focused our attention on JavaScript and then React, so we have a good idea now of how we can build a web based application that runs in the browser. The part of a web application that runs in the browser is called the frontend of a full stack web application. What we don't know how to do yet is to build out our own custom backend with logic that we can control, complicated database relationships and persistence. Learning how to build out the backend is going to be the focus of Phase 3.
 
-In this directory, we'll put our Ruby code in the files in the `lib` directory. Because we're moving our focus away from react for the first couple of weeks of this phase, the way we'll get visual feedback about how our code is working is via a text based interface at the command line. We call this kind of application a CLI (Command Line Interface) for short.
+We're also switching languages to Ruby to do this. At the end of the phase, you'll build out a react application that can connect to a backend API written in ruby code that you can send fetch requests to and get/persist related data. One of the main reasons we're switching languages to Ruby for this part of the course is that there are robust tools already in place for creating rock solid APIs in Ruby. During this phase we'll be introducing a library called ActiveRecord which you'll be using extensively in Phase 4 and beyond. ActiveRecord gives you the tools to build out your domain model for the application you want to build and the ability to store and access all of its required data and behavior. 
+
+To start, because we need to get used to Ruby, we'll be building a simpler application that will run in our terminal. At the end of the phase, we'll take the features we've been building for our application and set up a web server that will allow a react app to make fetch requests to interact with the application. At the end of the phase, it'll look something like this:
+
+![Dog Walker App Demo](https://res.cloudinary.com/dnocv6uwb/image/upload/v1627627105/dog-walker-app-demo-13fps_nwstsn.gif)
+
+## Lecture Format
+
+Lectures will be split into 2 portions, with a 10 minute break in between.
+- Part 1: Demo of how to apply concepts from labs and lessons to our dog walker application
+- Part 2: Student Exercise in breakouts to apply concepts from demo to another codebase, followed by a review.
+## Dog Walker CLI Part 1
+
+Over the next few weeks, we're going to be work on a dog walking application. As we introduce new features to it, we'll be using the concepts covered in the lessons and labs to demonstrate how they are applied to a real situation and put them to work! 
+
+In this directory, we'll put our Ruby code in the files in the `lib` directory. The way we'll get visual feedback about how our code is working is via a text based interface at the command line. We call this kind of application a CLI (Command Line Interface) for short.
 
 The code for our cli will be written in the file `lib/dog_walker_cli.rb`. We'll start our cli application by running the following command in our terminal:
 
@@ -55,3 +70,19 @@ require_all "lib"
 
 This file contains the ruby code necessary to set up our dependencies and load up our code so we can interact with it. Later on, there are a couple of different places we need to do this, so putting this configuration in a file and then requiring the file will ensure we don't have to change this configuration in multiple places.
 
+## Demo
+
+- Take user input
+- Ask user the name of their dog
+- Ask the user their dog’s breed
+- Ask the user their dog's age
+- Ask the user to enter their dog's favorite treats
+- Ask the user if they’d like to take the dog for a walk
+- Add a menu to the cli
+  - 'add dog' to ask user for input to create a new dog - use pry to verify the dog has been - added to the array of dogs
+  - 'Info' print info about all dogs including name, age, breed, last feeding time and last pooped time
+- Introduce program loop
+
+Here's a sketch of the flow of the program we're going to create:
+
+![Program Flow](./program-flow.png)
