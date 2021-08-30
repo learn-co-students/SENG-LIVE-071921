@@ -4,15 +4,15 @@ Welcome to ruby fundamentals! For the first couple of phases, we focused our att
 
 We're also switching languages to Ruby to do this. At the end of the phase, you'll build out a react application that can connect to a backend API written in ruby code that you can send fetch requests to and get/persist related data. One of the main reasons we're switching languages to Ruby for this part of the course is that there are robust tools already in place for creating rock solid APIs in Ruby. During this phase we'll be introducing a library called ActiveRecord which you'll be using extensively in Phase 4 and beyond. ActiveRecord gives you the tools to build out your domain model for the application you want to build and the ability to store and access all of its required data and behavior. 
 
-To start, because we need to get used to Ruby, we'll be building a simpler application that will run in our terminal. At the end of the phase, we'll take the features we've been building for our application and set up a web server that will allow a react app to make fetch requests to interact with the application. At the end of the phase, it'll look something like this:
-
 ![Dog Walker App Demo](https://res.cloudinary.com/dnocv6uwb/image/upload/v1627627105/dog-walker-app-demo-13fps_nwstsn.gif)
+
+To start, because we need to get used to Ruby, we'll be building a simpler application that will run in our terminal. At the end of the phase, we'll take the features we've been building for our application and set up a web server that will allow a react app to make fetch requests to interact with the application. At the end of the phase, it'll look something like what we have above.
 
 ## Lecture Format
 
 Lectures will be split into 2 portions, with a 10 minute break in between.
 - Part 1: Demo of how to apply concepts from labs and lessons to our dog walker application
-- Part 2: Student Exercise in breakouts to apply concepts from demo to another codebase, followed by a review.
+- Part 2: Student Exercise in breakouts to apply concepts from demo to another codebase, followed by a review and discussion.
 ## Dog Walker CLI Part 1
 
 Over the next few weeks, we're going to be work on a dog walking application. As we introduce new features to it, we'll be using the concepts covered in the lessons and labs to demonstrate how they are applied to a real situation and put them to work! 
