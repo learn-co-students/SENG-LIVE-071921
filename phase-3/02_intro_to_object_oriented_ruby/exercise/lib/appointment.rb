@@ -17,6 +17,7 @@ class Appointment
     puts ""
     puts "#{self.time.light_green} #{self.canceled ? '(CANCELED)'.red : ''}"
     puts "  Doctor: #{self.doctor}"
+    puts "  Patient: #{self.patient}"
     puts "  Purpose: #{self.purpose}"
     puts "  Notes: #{self.notes || 'none'}"
     puts ""
