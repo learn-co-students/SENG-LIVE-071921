@@ -42,17 +42,17 @@ end
 
 def add_dog
   print "What's your dog's name? ".cyan
-  dog_name = gets.chomp
+  name = gets.chomp
   print "What's your dog's age? ".cyan
-  dog_age = gets.chomp
+  age = gets.chomp
   print "What's your dog's breed? ".cyan
-  dog_breed = gets.chomp
+  breed = gets.chomp
   print "What are some of your dog's favorite treats? ".cyan
   favorite_treats = gets.chomp
   dog = {
-    name: dog_name,
-    age: dog_age,
-    breed: dog_breed,
+    name: name,
+    age: age,
+    breed: breed,
     favorite_treats: favorite_treats
   }
   DOGS << dog
