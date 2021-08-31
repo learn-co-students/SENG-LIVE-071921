@@ -36,6 +36,26 @@ If I were building a social media application, being able to iterate quickly and
 - Testing Object Oriented code requires more setup
 - Because so much abstraction is involved, if we're building an application where our requirements are rapidly changing, committing to the wrong abstraction can require more work to refactor and adjust than it would with functional code.
 
+If you're looking for a clear and concise example of how to recognize OO vs functional code, consider the following:
+
+```rb
+# Functional
+def print_dog(dog)
+  # ...
+end
+
+print_dog(dog_hash)
+
+# Object Oriented
+class Dog
+  def print
+    # ...
+  end
+end
+
+dog = Dog.new
+dog.print
+```
 ## Dog Walker CLI Part 2
 ### Key Features we're going to add to our Dog Walker CLI:
 
