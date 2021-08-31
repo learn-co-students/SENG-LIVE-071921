@@ -125,3 +125,23 @@ We'll be using this knowledge in our `needs_a_walk?` and `needs_a_meal?` methods
 Here's a sketch of the flow of the program we're going to create:
 
 ![Program Flow](./program-flow.png)
+
+## Important Errors To Understand
+
+If you see a NoMethodError there are 3 pieces of information to latch onto:
+
+/Users/dakotamartinez/Development/flatiron/iterations/SENG-LIVE-071921/phase-3/02_intro_to_object_oriented_ruby/demo/lib/dog.rb:12:in `print': undefined method `name' for #<Dog:0x00007f9f17901b28> (NoMethodError)
+
+- Check the line number where it happened lib/dog.rb:12 (line 12)
+- the name of the method that was called on that line
+- the object the method was called upon.
+
+The problem is usually one of 2 things:
+
+- The right method was called on the wrong object
+- The wrong (or undefined) method was called on the right object
+
+You need to check:
+
+- Is the method being called on the right object?
+- Is the method being called the right method (is it misspelled?)
