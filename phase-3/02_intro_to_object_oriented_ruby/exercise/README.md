@@ -33,8 +33,8 @@
 
 ### Advanced Deliverables
 
-- Right now, if our program is in one of our 'submenu' methods (`add_appointment` or `add_notes` or `cancel`) and we type `exit` we won't get the intended result. Think about ways we might allow the user to type exit from anywhere in the CLI and have that leave the program.
 - Add a `valid?` method to the `Appointment` class to indicate whether the appointment has all of the required information (non-empty string values) for `time`, `doctor`, `patient` and `purpose`. If it doesn't, don't add the appointment to `APPOINTMENTS` and ask the user to input the appointment information again
+- Right now, if our program is in one of our 'submenu' methods (`add_appointment` or `add_notes` or `cancel`) and we type `exit` we won't get the intended result. Think about ways we might allow the user to type exit from anywhere in the CLI and have that leave the program.
 
 ### For Reference
 
