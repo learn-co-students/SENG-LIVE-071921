@@ -7,6 +7,5 @@
 /spec/reports/
 /tmp/
 
-program-flow.png
 # rspec failure tracking
 .rspec_status
