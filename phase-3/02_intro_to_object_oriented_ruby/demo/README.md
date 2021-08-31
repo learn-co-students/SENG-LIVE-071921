@@ -128,6 +128,7 @@ Here's a sketch of the flow of the program we're going to create:
 
 ## Important Errors To Understand
 
+### NoMethodError
 If you see a NoMethodError there are 3 pieces of information to latch onto:
 
 /Users/dakotamartinez/Development/flatiron/iterations/SENG-LIVE-071921/phase-3/02_intro_to_object_oriented_ruby/demo/lib/dog.rb:12:in `print': undefined method `name' for #<Dog:0x00007f9f17901b28> (NoMethodError)
