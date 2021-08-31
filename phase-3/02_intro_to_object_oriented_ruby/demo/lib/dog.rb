@@ -33,12 +33,12 @@ class Dog
 
   def print
     puts ""
-    puts @name.light_green
-    puts "  age: #{@age}"
-    puts "  breed: #{@breed}"
-    puts "  favorite_treats: #{@favorite_treats}"
-    puts "  restless: #{needs_a_walk?}"
-    puts "  hungry: #{needs_a_meal?}"
+    puts self.name.light_green
+    puts "  age: #{self.age}"
+    puts "  breed: #{self.breed}"
+    puts "  favorite_treats: #{self.favorite_treats}"
+    puts "  restless: #{self.needs_a_walk?}"
+    puts "  hungry: #{self.needs_a_meal?}"
     puts ""
   end
 
