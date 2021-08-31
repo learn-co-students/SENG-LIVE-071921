@@ -2,9 +2,6 @@ DOGS = []
 
 def start_cli
   puts "hello! Welcome to the Dog Walker CLI"
-  print "What's your name? "
-  name = gets.chomp
-  puts "Hi #{name}"
   main_menu
   handle_user_choice
   puts "Thanks for using the Dog Walker CLI!"

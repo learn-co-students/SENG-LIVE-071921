@@ -19,8 +19,6 @@ Here are some characteristics of applications that would lend themselves well to
 - an application modeling a real world domain that has lots of government regulations with specific data storage requirements (health care, banking, insurance, etc.)
 - an application designed to help workers accomplish well established tasks that have consistent data requirements (sales, eCommerce, accounting, booking software for restaurants or hotels) 
 
-If I'm building an application in a domain that has a lot of government regulations, professional standards, or stable, clearly defined roles and responsibilities that apply to it, like K12 education or health care, or accounting, an object oriented design would be a good fit.  
-
 Object Oriented design would help me clearly define the responsibilities of the different objects in my program and how they are related to other objects in the program. 
 
 #### Situations where object oriented design presents obstacles
@@ -56,7 +54,7 @@ If I were building a social media application, being able to iterate quickly and
 - In CLI
   - Add menu options for walking and feeding dogs
   - After choosing those options, create logic to allow users to choose which dog they want to walk/feed
-  - rework the parts of the cli that were expecting a dog hash to work with a dog instance instead.
+  - refactor the parts of the cli that were expecting a dog hash to work with a dog instance instead.
     - `DOGS` should store an array of instances of the Dog class instead of an array of hashes
     - within the `add_dog` method, we'll create an instance of the `Dog` class instead of a hash
     - instead of calling print_dog and passing the dog hash, we'll invoke `print` directly on the dog
@@ -85,7 +83,7 @@ This will update the Gemfile in the following way.
 
 gem "activesupport", "~> 6.1"
 ```
-Next, because `activesupport` is built in a more modular way, the `Bundle.require(:default)` isn't enough to get what we need, so we're going to require the pieces we want to work with within the `config/environment.rb` file.
+Next, because `activesupport` is built in a more modular way, the `Bundler.require(:default)` isn't enough to get what we need, so we're going to require the pieces we want to work with within the `config/environment.rb` file.
 ```rb
 # config/environment.rb
 # ...
