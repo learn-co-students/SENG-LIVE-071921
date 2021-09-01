@@ -1,4 +1,4 @@
-APPOINTMENTS = []
+# APPOINTMENTS = []
 
 def start_cli
   puts "Hi! Welcome to the Appointments CLI"
@@ -103,7 +103,7 @@ def appointments_by_doctor
   # ask user to choose which doctor's appointments they want to view
   # use your Appointment class method by_doctor to get the relevant
   # appointments and call print on each
-  Appointment.all.map{|appt| appt.doctor}.uniq.map do |doctor|
+  Appointment.all.map{|appt| appt.doctor}.uniq.each do |doctor|
     puts doctor
   end
   puts "Type the name of the doctor whose appointments you'd like to view:".cyan
@@ -119,7 +119,7 @@ def appointments_by_patient
   # ask user to choose which patient's appointments they want to view
   # use your Appointment class method by_patient to get the relevant
   # appointments and call print on each
-  Appointment.all.map{|appt| appt.patient}.uniq.map do |patient|
+  Appointment.all.map{|appt| appt.patient}.uniq.each do |patient|
     puts patient
   end
   puts "Type the name of the patient whose appointments you'd like to view:".cyan
