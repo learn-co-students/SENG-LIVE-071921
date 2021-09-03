@@ -1,0 +1,3 @@
+class DogWalk < Base
+  
+end

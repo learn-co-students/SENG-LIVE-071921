@@ -1,0 +1,3 @@
+class Walk < Base
+  
+end

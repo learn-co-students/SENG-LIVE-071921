@@ -1,0 +1,13 @@
+source 'http://rubygems.org'
+
+gem 'activerecord'
+gem 'sinatra-activerecord'
+gem 'rake'
+
+gem 'require_all'
+gem 'sqlite3'
+
+
+group :development do 
+  gem 'pry'
+end
