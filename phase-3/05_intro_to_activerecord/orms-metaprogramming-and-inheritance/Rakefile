@@ -1,0 +1,16 @@
+ENV["SINATRA_ENV"] ||= "development"
+
+require_relative './config/environment'
+require 'sinatra/activerecord/rake'
+
+desc "Start our app console"
+task :console do
+  ActiveRecord::Base.logger = Logger.new(STDOUT)
+  Pry.start
+end
+
+desc "Start our server"
+task :server do
+  exec "rerun -b 'rackup config.ru'"
+end 
+

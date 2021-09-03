@@ -1,0 +1,27 @@
+source 'http://rubygems.org'
+
+gem 'rack-contrib', '~> 2.3', :require => 'rack/contrib'
+gem 'sinatra-cross_origin'
+
+gem 'activerecord', '~> 5.2'
+gem 'sinatra-activerecord'
+gem 'rake'
+
+gem 'require_all'
+gem 'sqlite3', '<1.4'
+
+gem 'thin'
+gem 'bcrypt'
+
+group :development, :test do 
+  gem 'pry'
+  gem 'rerun'
+  gem 'tux'
+end
+
+group :test do
+  gem 'rspec'
+  gem 'capybara'
+  gem 'rack-test'
+  gem 'database_cleaner', git: 'https://github.com/bmabey/database_cleaner.git'
+end
