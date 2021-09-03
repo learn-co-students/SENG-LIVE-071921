@@ -30,13 +30,21 @@
   - `feedings` table
     - time (datetime)
     - dog_id (integer foreign key)
-- Dog class
+- `Walk` Class
+  - inherit from `ActiveRecord::Base`
+  - add association macro to establish relationship between a walk and a dog
+- `Feeding` Class
+  - inherit from `ActiveRecord::Base`
+  - add association macro to establish relationship between a feeding and a dog
+- `Dog` class
+  - inherit from `ActiveRecord::Base`
+  - add association macros to establish relationship between a dog and walks/feedings
   - by inheriting from `ActiveRecord::Base` we'll get the following methods defined for us:
     - `initialize` (will accept a hash of attributes matching the column names in the dogs table)
     - `.all` will query the database and get all of the dogs and return them in a relation
     - `#save` will persist an instance of the dog class to the database with an insert for a new record and an update for a record that had already been persisted.
     - `.create(attributes)` method that takes attributes as an argument and will instantiate and save a new instance of the dog class to the database.
-  - We also won't need to use the `.new_from_row` method anymore as ActiveRecord will handle that functionality as well.
+    - We also won't need to use the `.new_from_row` method anymore as ActiveRecord will handle that functionality as well.
   - For the `walk` method, we'll:
     - update the `last_walked_at` column to the current time
     - and create a new walk at the current time that belongs to the dog.
@@ -54,9 +62,9 @@
 
 ### Logistics
 
-- The code for our cli will be written in the file `lib/dog_walker_cli.rb`. 
 - We'll have a `lib/dog.rb` file where our `Dog` class is defined.
 - We'll have two new files `lib/walk.rb` and `lib/feeding.rb` where those respective classes will be defined. 
+- The code for our cli is written in the file `lib/dog_walker_cli.rb`. 
 - We need to use `rake` to add migration files to create our database tables
 - Again, we'll start our cli application by running the following command in our terminal:
 
