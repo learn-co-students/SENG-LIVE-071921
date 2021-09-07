@@ -1,0 +1,28 @@
+#!/usr/bin/env ruby
+require "bundler/setup"
+Bundler.require(:default)
+
+class Dog
+  puts "Inside the Dog class, self is: #{self}"
+
+  @@all = []
+
+  def self.all
+    puts "Inside a class method in the Dog class, self is: #{self}"
+    @@all
+  end
+
+  attr_accessor :name
+
+  def initialize(name)
+    self.name = name
+  end
+
+  def say_hi
+    puts "Inside an instance method in the Dog class, self is: #{self}"
+    puts "Hi there, I'm #{self.name}"
+  end
+end
+
+
+Pry.start
