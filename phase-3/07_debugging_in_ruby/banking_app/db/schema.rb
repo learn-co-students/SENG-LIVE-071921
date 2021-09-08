@@ -10,7 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_19_171329) do
+ActiveRecord::Schema.define(version: 2021_08_19_191401) do
+
+  create_table "accounts", force: :cascade do |t|
+    t.string "label"
+    t.float "balance"
+    t.string "account_type"
+    t.integer "user_id"
+    t.integer "bank_id"
+    t.index ["bank_id"], name: "index_accounts_on_bank_id"
+    t.index ["user_id"], name: "index_accounts_on_user_id"
+  end
 
   create_table "banks", force: :cascade do |t|
     t.string "name"
@@ -23,4 +33,6 @@ ActiveRecord::Schema.define(version: 2021_08_19_171329) do
     t.string "country_of_residence"
   end
 
+  add_foreign_key "accounts", "banks"
+  add_foreign_key "accounts", "users"
 end
