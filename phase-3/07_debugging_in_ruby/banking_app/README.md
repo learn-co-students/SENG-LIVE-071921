@@ -41,6 +41,8 @@ We can start off the process of debugging by asking ourselves the following ques
   - The main difference between the two is that `rspec` requires more time/thought/care to set up. Also, tests are files and therefore part of your codebase–so the scenarios that you've used to test your code are actually stored with your code.
   - At this stage, being methodical about how you develop your manual testing/debugging skills in the console will pay off mightily because not only will those skills translate to writing your own tests later on, but there are lots of scenarios where you need quick feedback under time pressure and the console will give you feedback more quickly and directly.
 
+[Discussion HackMD Doc](https://hackmd.io/_aBC2VvuT0mtdbA6Ah4FEQ)
+
 ## Example
 
 ## What You Already Have
