@@ -1,5 +1,5 @@
 class Dog < ActiveRecord::Base
-  has_many :dog_walks, dependent: :destroy
+  has_many :dog_walks
   has_many :walks, through: :dog_walks
   has_many :feedings
   
@@ -14,7 +14,6 @@ class Dog < ActiveRecord::Base
       dog.needs_a_walk?
     end
   end
-
   
   def walk
     now = Time.now
