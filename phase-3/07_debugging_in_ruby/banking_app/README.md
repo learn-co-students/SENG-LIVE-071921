@@ -2,7 +2,31 @@
 
 Debugging is essential in your ability to progress from a problem/task to a solution/implementation. It's all about splitting your problem into smaller pieces and verifying the behavior of each piece.
 
-## Important Steps
+Often, debugging is thought of us a process that starts when you have a problem, but I like to take a broader approach to thinking about debugging. This is taken from Wikipedia, but I wanted to read it here.
+
+> As software and electronic systems have become generally more complex, the various common debugging techniques have expanded with more methods to detect anomalies, assess impact, and schedule software patches or full updates to a system. The words "anomaly" and "discrepancy" can be used, as being more neutral terms, to avoid the words "error" and "defect" or "bug" where there might be an implication that all so-called errors, defects or bugs must be fixed (at all costs). Instead, an impact assessment can be made to determine if changes to remove an anomaly (or discrepancy) would be cost-effective for the system, or perhaps a scheduled new release might render the change(s) unnecessary. Not all issues are safety-critical or mission-critical in a system. Also, it is important to avoid the situation where a change might be more upsetting to users, long-term, than living with the known problem(s) (where the "cure would be worse than the disease"). Basing decisions of the acceptability of some anomalies can avoid a culture of a "zero-defects" mandate, where people might be tempted to deny the existence of problems so that the result would appear as zero defects. Considering the collateral issues, such as the cost-versus-benefit impact assessment, then broader debugging techniques will expand to determine the frequency of anomalies (how often the same "bugs" occur) to help assess their impact to the overall system.
+
+That's a lot, my simple definition of a bug is: 
+
+>code that's behaving differently from the way you want it to.
+
+We can start off the process of debugging by asking ourselves the following questions:
+
+## Process
+
+- What is our code supposed to do?
+- How do we know when it's done?
+- How do we split it into smaller pieces?
+- How does each piece connect to the next? 
+- What should be true at each stage of the process?
+- How do we get feedback as we go?
+
+## Techniques/Tools
+- adding `binding.pry`
+- using `rake console`
+- adding `puts` statements
+
+## Important Action Items
 
 - **Study problem/task/deliverable**
   - We'll need to be able to break our tasks into pieces and test each piece individually to make consistent progress. 
@@ -11,7 +35,7 @@ Debugging is essential in your ability to progress from a problem/task to a solu
   - If we're working on an instance method, we need an instance we can call it on.
   - When we call it, what should happen? What should it return?
 - **Set up a debugging/testing environment**
-  - The difference between testing our code using automated testing (with rspec) and testing it in the console manually is really not very profound.
+  - The difference between testing our code using automated testing (with rspec) and testing it manually, in the console for example, is not very profound.
   - With automated (`rspec`) tests, we describe a part of our code, set up a scenario and then establish expectations about how it should behave in that scenario. If our expectations are met, we pass the test and see some green, if not we get some errors in red.
   - With manual testing in the console, we jump right into setting up a scenario. Then we write some code that we expect to behave in a certain way, hit enter and see if we get what we expected.
   - The main difference between the two is that `rspec` requires more time/thought/care to set up. Also, tests are files and therefore part of your codebase–so the scenarios that you've used to test your code are actually stored with your code.
