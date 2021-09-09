@@ -1,40 +1,52 @@
-# Gemfile 
-source 'http://rubygems.org'
+source "https://rubygems.org"
 
-# rack-contrib gives us access to Rack::JSONBodyParser allowing Sinatra (which is built on Rack) to parse requests whose body is in JSON format
-gem 'rack-contrib', '~> 2.3', :require => 'rack/contrib'
-# sinatra-cross_origin allows our Sinatra API to respond to cross-origin requests
-gem 'sinatra-cross_origin'
+# A DSL for quickly creating web applications
+# https://github.com/sinatra/sinatra
+gem "sinatra", "~> 2.1"
 
-# these should be familiar from before. Allow us to set up our sqlite3 database with activerecord and sinatra.
-gem 'activerecord', '~> 6.1'
-gem 'sinatra-activerecord'
-gem 'rake'
+# A fast and simple web server
+# https://github.com/macournoyer/thin
+gem "thin", "~> 1.8"
 
-gem 'require_all'
-gem 'sqlite3'
+# Rack middleware. Used specifically for parsing the request body into params.
+# https://github.com/rack/rack-contrib
+gem "rack-contrib", "~> 2.3"
 
-# thin is a basic web server that Sinatra can use to respond to http requests
-gem 'thin'
+# More Rack middleware! Used to handle CORS requests
+# https://github.com/cyu/rack-cors
+gem "rack-cors", "~> 1.1"
 
+# An object-relational mapper
+# https://guides.rubyonrails.org/active_record_basics.html
+gem "activerecord", "~> 6.1"
 
-# bcrypt is a gem used to encrypt user passwords so that they are not stored in plain text within the database.
-gem 'bcrypt'
+# Configures common Rake tasks for working with Active Record
+# https://github.com/sinatra-activerecord/sinatra-activerecord
+gem "sinatra-activerecord", "~> 2.0"
 
+# Run common tasks from the command line
+# https://github.com/ruby/rake
+gem "rake", "~> 13.0"
 
-group :development, :test do 
-  # you know about pry at this point, used to allow us to stop our code while it's running for debugging purposes.
-  gem 'pry'
-  # rerun gives us a command we can use in the terminal to start the local development server (like npm start for react) that will autoreload the server process whenever we change our code so we don't need to restart the server whenever we make a change.
-  gem 'rerun'
-  # tux adds a command called `tux` that has access to all of our classes (similar to what we did with rake console manually)
-  gem 'tux'
+# Provides functionality to interact with a SQLite3 database
+gem "sqlite3", "~> 1.4"
+
+# Require all files in a folder
+gem "require_all", "~> 3.0"
+
+# These gems will only be used when we are running the application locally
+group :development do
+  gem "pry", "~> 0.14.1"
+
+  # Automatically reload when there are changes
+  # https://github.com/alexch/rerun
+  gem "rerun"
 end
 
-# these gems are specialized for testing our application.
+# These gems will only be used when we are running tests
 group :test do
-  gem 'rspec'
-  gem 'capybara' # for feature tests
-  gem 'rack-test'
-  gem 'database_cleaner', git: 'https://github.com/bmabey/database_cleaner.git' # for resetting the test database before and after the test suite runs
+  gem "database_cleaner", "~> 2.0"
+  gem "rack-test", "~> 1.1"
+  gem "rspec", "~> 3.10"
+  gem "rspec-json_expectations", "~> 2.2"
 end

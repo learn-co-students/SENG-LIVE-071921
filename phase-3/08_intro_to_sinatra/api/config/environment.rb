@@ -1,9 +1,10 @@
-# sets the default environment to "development" so our normal rake commands will interact with the development database.
-ENV['SINATRA_ENV'] ||= "development"
+# This is an _environment variable_ that is used by some of the Rake tasks to determine
+# if our application is running locally in development, in a test environment, or in production
+ENV['RACK_ENV'] ||= "development"
 
+# Require in Gems
 require 'bundler/setup'
-Bundler.require(:default, ENV['SINATRA_ENV'])
+Bundler.require(:default, ENV['RACK_ENV'])
 
-# this loads up our application controller and then all files in the app directory.
-require './app/controllers/application_controller'
+# Require in all files in 'app' directory
 require_all 'app'
