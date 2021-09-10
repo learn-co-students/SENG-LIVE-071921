@@ -401,7 +401,7 @@ So, when it comes to building out an API endpoint (route) these are the 3 things
 - rake server logs
 - binding.pry within `rake server` terminal
 - puts statements within `rake server` terminal
-## Important Gotchas
+## Important Gotchas & Troubleshooting steps
 
 ### Routes paths must start with `/`!
   

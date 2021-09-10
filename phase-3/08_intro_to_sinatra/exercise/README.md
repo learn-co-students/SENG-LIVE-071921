@@ -17,5 +17,5 @@ Build out the following endpoints:
 - You can also boot up the react client using `npm start`
   - keep an eye on the network tab in the chrome devtools, this will show you the requests that are being sent and the responses received as well.
   - If you click on the navbar link to `/walks` you should see a list of walks there if you've completed the first endpoint.
-  - If you fill in the form in the react client to create a walk, it will appear in the browser if the endpoint is properly configured
+  - If you fill in the form in the react client to create a walk, it will appear in the browser if the endpoint is properly configured (note at this point that you won't see the dogs on the walks/:id route, we'll get into how to solve that problem in the next lecture)
   - If you click on the trash can icon in the react client, it should remove the walk from the database. 
