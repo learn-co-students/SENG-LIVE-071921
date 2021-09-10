@@ -193,8 +193,8 @@ There are different types of HTTP requests that you should be aware of. These ar
 
 - [GET](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/GET) - for retrieving (not modifying) information
 - [POST](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/POST) - for sending new information
-- [PUT](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/PUT) - for updating existing information
-- [PATCH](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/PATCH) - for updating existing information
+- [PUT](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/PUT) - for replacing existing information (full update)
+- [PATCH](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/PATCH) - for updating existing information (partial update)
 - [DELETE](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/DELETE) - for deleting stored information
 
 The Request/Response cycle is a key concept when we're building web applications, so let's take a minute to review what each of them looks like in more technical detail.
@@ -226,6 +226,8 @@ Responses consist of the following elements:
 
 When we're first building web applications as an API backend, our focus is on building out endpoints. An endpoint is a route to which requests can be sent in order to retrieve a particular response. When we speak about a `route` we mean a path that a user can take through your application to go from a request to a response. The main ideas we have to manage when building a route/endpoint for our API are these:
 
+> The terms route and endpoint are used interchangeably when talking about possible requests we can send to an API.
+
 - the HTTP verb (get, post, put, patch, or delete)
 - the path (`"/"`, `"/dogs"`, `"/walks"`)
 - the JSON that we want to send back as a response
@@ -249,7 +251,7 @@ Other HTTP details we'll have to account for:
 
 ### IMPORTANT NOTE
 
-When you work on your project, it's recommended that your react application be in one repository and your sinatra api be in another repository. While it is possible to store all of the code in a single repository, it affects the process of deploying your code. There are pros and cons to each approach, but at this point, the benefits of deploying the frontend and backend to separate servers/services (heroku for backend and netlify for frontend) outweigh the challenges. Storing the frontend code in one repo and the backend code in another will allow you to deploy both to the services mentioned above via a simple `git push`.
+When you work on your project, it's recommended that your react application be in one repository and your sinatra api be in another repository. While it is possible to store all of the code in a single repository, it affects the process of deploying your code. There are pros and cons to each approach, but at this point, the benefits of deploying the frontend and backend to separate servers/services (heroku for backend and netlify for frontend) outweigh the challenges. Storing the frontend code in one repo and the backend code in another will allow you to deploy both to the services mentioned above via a simple `git push`. One of the downsides is that it makes user authentication a bit trickier. In Phase 4, when we introduce authentication, we're going to deploy our rails application and our react application together from a single repo. So, you'll get some experience with both approaches.
 
 ### Quick Question to think about before break
 If we look again at our dog walker application again:
@@ -257,7 +259,7 @@ If we look again at our dog walker application again:
 
 #### What different requests are we going to need to send from our frontend to our API backend?
 
-## Part 2 - Exploring the Starter Codebase 
+## Exploring the Starter Codebase 
 
 - `app/models`: Our Active Record models. Responsible for code that accesses and updates data in our database using classes that inherit from ActiveRecord::Base. We'll have the models we've been working on throughout the phase here.
 - `config`: Code in this folder is responsible for our environment setup, like requiring files/gems, and establishing a connection to the database.
@@ -331,9 +333,46 @@ http://localhost:9292/hi
 
 Uh oh!
 
-![non string error](https://github.com/DakotaLMartinez/intro_to_sinatra/raw/main/img/non-string-error.png)
+```
+Internal server error
+```
 
-OK, so let's break this down. Rack is expecting the return value for the route to be a string, but the body is yielding a non string value. We know we want our api to respond with JSON, so let's convert the hash to json:
+OK, so this isn't super helpful. When you get a message like this in the browser, you want to check out the server logs. 
+
+```rb
+2021-09-09 18:08:37 -0700 Unexpected error while processing request: Body yielded non-string value [:hello, "world"]
+        /Users/dakotamartinez/.rvm/gems/ruby-2.6.6/gems/rack-2.2.3/lib/rack/lint.rb:21:in `assert'
+        /Users/dakotamartinez/.rvm/gems/ruby-2.6.6/gems/rack-2.2.3/lib/rack/lint.rb:756:in `block in each'
+        /Users/dakotamartinez/.rvm/gems/ruby-2.6.6/gems/rack-2.2.3/lib/rack/body_proxy.rb:41:in `each'
+        /Users/dakotamartinez/.rvm/gems/ruby-2.6.6/gems/rack-2.2.3/lib/rack/body_proxy.rb:41:in `method_missing'
+        /Users/dakotamartinez/.rvm/gems/ruby-2.6.6/gems/rack-2.2.3/lib/rack/lint.rb:754:in `each'
+        /Users/dakotamartinez/.rvm/gems/ruby-2.6.6/gems/rack-2.2.3/lib/rack/body_proxy.rb:41:in `method_missing'
+        /Users/dakotamartinez/.rvm/gems/ruby-2.6.6/gems/rack-2.2.3/lib/rack/content_length.rb:26:in `call'
+        /Users/dakotamartinez/.rvm/gems/ruby-2.6.6/gems/thin-1.8.1/lib/thin/connection.rb:86:in `block in pre_process'
+        /Users/dakotamartinez/.rvm/gems/ruby-2.6.6/gems/thin-1.8.1/lib/thin/connection.rb:84:in `catch'
+        /Users/dakotamartinez/.rvm/gems/ruby-2.6.6/gems/thin-1.8.1/lib/thin/connection.rb:84:in `pre_process'
+        /Users/dakotamartinez/.rvm/gems/ruby-2.6.6/gems/thin-1.8.1/lib/thin/connection.rb:53:in `process'
+        /Users/dakotamartinez/.rvm/gems/ruby-2.6.6/gems/thin-1.8.1/lib/thin/connection.rb:39:in `receive_data'
+        /Users/dakotamartinez/.rvm/gems/ruby-2.6.6/gems/eventmachine-1.2.7/lib/eventmachine.rb:195:in `run_machine'
+        /Users/dakotamartinez/.rvm/gems/ruby-2.6.6/gems/eventmachine-1.2.7/lib/eventmachine.rb:195:in `run'
+        /Users/dakotamartinez/.rvm/gems/ruby-2.6.6/gems/thin-1.8.1/lib/thin/backends/base.rb:75:in `start'
+        /Users/dakotamartinez/.rvm/gems/ruby-2.6.6/gems/thin-1.8.1/lib/thin/server.rb:162:in `start'
+        /Users/dakotamartinez/.rvm/gems/ruby-2.6.6/gems/thin-1.8.1/lib/rack/handler/thin.rb:22:in `run'
+        /Users/dakotamartinez/.rvm/gems/ruby-2.6.6/gems/rack-2.2.3/lib/rack/server.rb:327:in `start'
+        /Users/dakotamartinez/.rvm/gems/ruby-2.6.6/gems/rack-2.2.3/lib/rack/server.rb:168:in `start'
+        /Users/dakotamartinez/.rvm/gems/ruby-2.6.6/gems/rack-2.2.3/bin/rackup:5:in `<top (required)>'
+        /Users/dakotamartinez/.rvm/gems/ruby-2.6.6/bin/rackup:23:in `load'
+        /Users/dakotamartinez/.rvm/gems/ruby-2.6.6/bin/rackup:23:in `<main>'
+        /Users/dakotamartinez/.rvm/gems/ruby-2.6.6/bin/ruby_executable_hooks:24:in `eval'
+        /Users/dakotamartinez/.rvm/gems/ruby-2.6.6/bin/ruby_executable_hooks:24:in `<main>'
+```
+
+So the error is `Unexpected error while processing request: Body yielded non-string value [:hello, "world"]`
+
+When we return a value from one of our routes, we need to make sure that the value is a string. We generally want to send JSON strings as responses, so we can use the `to_json` method to 
+
+
+so let's break this down. Rack is expecting the return value for the route to be a string, but the body is yielding a non string value. We know we want our api to respond with JSON, so let's convert the hash to json:
 
 ```rb
 get "/hi" do 
@@ -354,9 +393,14 @@ So, when it comes to building out an API endpoint (route) these are the 3 things
 3. pass a block that returns a JSON formatted string (which will be our response body)
 
 
-## Part 3 - Devtools and Debugging
+## Devtools and Debugging
 
-- Network Tab in Chrome
+- Browser for get requests using [JSONView](https://chrome.google.com/webstore/detail/jsonview/chklaanhfefbnpoihckbnefhakgolnmc?hl=en) chrome extension for pretty JSON output
+- Network Tab in Chrome when using react
+- Postman for testing non GET requests
+- rake server logs
+- binding.pry within `rake server` terminal
+- puts statements within `rake server` terminal
 ## Important Gotchas
 
 ### Routes paths must start with `/`!
