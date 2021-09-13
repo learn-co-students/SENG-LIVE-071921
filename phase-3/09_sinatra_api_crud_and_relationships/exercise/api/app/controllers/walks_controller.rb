@@ -1,39 +1,15 @@
 class WalksController < ApplicationController
 
   get "/walks" do 
-    Walk.all.to_json(
-      only: [:id], 
-      methods: :formatted_time,
-      include: {
-        dog_walks: {
-          include: {
-            dog: {
-              methods: :age
-            }
-          }
-        }
-      }
-    )
+    serialize(Walk.all)
   end
  
   post "/walks" do 
-    Walk.create(walk_params).to_json(
-      only: [:id], 
-      methods: :formatted_time,
-      include: {
-        dog_walks: {
-          include: {
-            dog: {
-              methods: :age
-            }
-          }
-        }
-      }
-    )
+    serialize(Walk.create(walk_params))
   end
 
   delete "/walks/:id" do 
-    Walk.find(params[:id]).destroy.to_json
+    serialize(Walk.find(params[:id]).destroy)
   end
 
   private 
@@ -44,5 +20,21 @@ class WalksController < ApplicationController
   def walk_params
     allowed_params = %w(time dog_ids)
     params.select {|param,value| allowed_params.include?(param)}
+  end
+
+  def serialize(objects)
+    objects.to_json(
+      only: [:id], 
+      methods: :formatted_time,
+      include: {
+        dog_walks: {
+          include: {
+            dog: {
+              methods: :age
+            }
+          }
+        }
+      }
+    )
   end
 end

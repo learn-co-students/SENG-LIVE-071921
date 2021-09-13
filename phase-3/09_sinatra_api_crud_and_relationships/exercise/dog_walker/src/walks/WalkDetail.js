@@ -22,7 +22,7 @@ function WalkDetail({ walk = {}, togglePoo, handleDelete }) {
               <img
                 src={dogWalk.dog.image_url}
                 alt={dogWalk.dog.name}
-                className="w-20"
+                className="w-20 h-32 object-cover"
               />
               {dogWalk.dog.name}
             </span>

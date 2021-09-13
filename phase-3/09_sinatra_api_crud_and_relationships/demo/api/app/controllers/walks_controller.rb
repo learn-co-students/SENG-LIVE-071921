@@ -2,38 +2,20 @@ class WalksController < ApplicationController
 
   get "/walks" do 
     Walk.all.to_json(
-      only: [:id], 
-      methods: :formatted_time,
-      include: {
-        dog_walks: {
-          include: {
-            dog: {
-              methods: :age
-            }
-          }
-        }
-      }
+      methods: :formatted_time
     )
   end
  
   post "/walks" do 
     Walk.create(walk_params).to_json(
-      only: [:id], 
-      methods: :formatted_time,
-      include: {
-        dog_walks: {
-          include: {
-            dog: {
-              methods: :age
-            }
-          }
-        }
-      }
+      methods: :formatted_time
     )
   end
 
   delete "/walks/:id" do 
-    Walk.find(params[:id]).destroy.to_json
+    Walk.find(params[:id]).destroy.to_json(
+      methods: :formatted_time
+    )
   end
 
   private 

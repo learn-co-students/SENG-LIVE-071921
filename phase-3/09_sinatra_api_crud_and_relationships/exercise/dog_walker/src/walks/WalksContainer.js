@@ -99,6 +99,7 @@ function WalksContainer() {
             <WalkDetail
               togglePoo={togglePoo}
               walk={walks.find(walk => walk.id === parseInt(match.params.id))}
+              handleDelete={handleDelete}
             />
           )}
         >

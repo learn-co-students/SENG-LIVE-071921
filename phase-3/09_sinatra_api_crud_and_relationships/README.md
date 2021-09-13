@@ -72,14 +72,12 @@ In this case, we're going to go with option 1 because it will simplify our react
 The way we'll include these relationships with the JSON responses is by using the `include` option for the `to_json` method.
 
 ```rb
-# app/models/user.rb
 # t.string :username
 # t.string :email
 class User < ActiveRecord::Base
   has_many :posts
 end
 
-# app/models/post.rb
 # t.string :title
 # t.text :content
 class Post < ActiveRecord::Base
@@ -95,6 +93,16 @@ class Post < ActiveRecord::Base
   end
 end
 
+# t.string :content
+# t.integer :user_id
+# t.integer :post_id
+class Comment < ActiveRecord::Base
+  belongs_to :user
+  belongs_to :post
+
+  delegate :username, to: :user
+end
+
 User.first.to_json(
   only: [:username],
   include: {
@@ -104,18 +112,54 @@ User.first.to_json(
         :title
       ],
       methods: [:reading_time]
+      include: {
+        comments: {
+          only: [:content],
+          methods: [:username]
+        }
+      }
     }
   }
 )
 
-# {
-#   username: "Dakota",
-#   posts: [
-#     { id: 1, title: "My first post", reading_time: "less than 1 minute" },
-#     { id: 2, title: "The second post", reading_time: "about 4 minutes },
-#     { id: 3, title: "A funny post", reading_time: "about 3 minutes" }
-#   ]
-# }
+{
+  username: "Dakota",
+  posts: [
+    { 
+      id: 1, 
+      title: "My first post", 
+      reading_time: "less than 1 minute", 
+      comments: [
+        { 
+          content: "so short!",
+          username: "So meone"
+        }
+      ] 
+    },
+    { 
+      id: 2, 
+      title: "The second post", 
+      reading_time: "about 4 minutes", 
+      comments: [
+        { 
+          content: "love this post",
+          username: "Noo ne"
+        }
+      ]
+    },
+    { 
+      id: 3,
+      title: "A funny post",
+      reading_time: "about 3 minutes", 
+      comments: [
+        { 
+          content: "haha",
+          username: "Nob ody"
+        }
+      ]
+    }
+  ]
+}
 ```
 
 #### Resources
@@ -153,6 +197,12 @@ class UsersController < ApplicationController
             :title
           ],
           methods: [:reading_time]
+          include: {
+            comments: {
+              only: [:content],
+              methods: [:username]
+            }
+          }
         }
       }
     )
