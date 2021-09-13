@@ -1,28 +1,28 @@
 class DogsController < ApplicationController
   
   get "/dogs" do 
-    format_as_json(Dog.all)
+    serialize(Dog.all)
   end
 
   get "/dogs/:id" do 
     dog = Dog.find(params[:id])
-    format_as_json(dog)
+    serialize(dog)
   end
 
   post "/dogs" do 
-    format_as_json(Dog.create(dog_params))
+    serialize(Dog.create(dog_params))
   end
 
   patch "/dogs/:id" do
     dog = Dog.find(params[:id])
     dog.update(dog_params)
-    format_as_json(dog)
+    serialize(dog)
   end
 
   delete "/dogs/:id" do 
     dog = Dog.find(params[:id])
     dog.destroy
-    format_as_json(dog)
+    serialize(dog)
   end
 
   private 
@@ -35,15 +35,9 @@ class DogsController < ApplicationController
     params.select {|param,value| allowed_params.include?(param)}
   end
 
-  def format_as_json(dog)
+  def serialize(dog)
     dog.to_json(
-      methods: :age,
-      include: {
-        dog_walks: {
-          only: [:id, :walk_id, :pooped],
-          methods: [:formatted_time]
-        }
-      }
+      methods: :age
     )
   end
 end
