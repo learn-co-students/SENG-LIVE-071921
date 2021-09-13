@@ -219,3 +219,13 @@ end
 | `post '/dogs'` | Create | single object (`dog`) | `setDogs(dogs.concat(dog))` |
 | `patch '/dogs/:id'` | Update | single object (`dog`) | `setDogs(dogs.map(d => d.id === dog.id ? dog : d))` |
 | `delete '/dogs/:id'` | Delete | single object (`dog`) | `setDogs(dogs.filter(d => d.id !== dog.id )` |
+
+Break!
+
+## Changes to our Demo codebase
+
+- Look at the `DogDetail` view and examine the data requirements to show walk info.
+- Update `DogsController`'s `serialize` method to include required data.
+- Examine code in `DogWalksController` and discuss the discrepancy between the user input format and the dog_walks schema. 
+
+Refer to the [README.md](./exercise/README.md) in the exercise directory for instructions on how to approach the exercise.

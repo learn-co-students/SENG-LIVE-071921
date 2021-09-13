@@ -1,4 +1,4 @@
-# Relationships Exercise
+# Sinatra API Relationships Exercise
 
 Your task for today will be to get the dog walker portion of the application working. In particular, what's currently missing is the ability to see which dogs are on a particular walk. This is happening because the walks are currently not included within the JSON response from the endpoints in the `WalksController`.
 
