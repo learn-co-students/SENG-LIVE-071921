@@ -137,7 +137,8 @@ So, we know that each dog needs to include the `name` and `image_url`. Both of t
 [
   {
     "id":1,
-    "formatted_time":"Wednesday, 09/08/21 11:59 PM","dog_walks":[]
+    "formatted_time":"Wednesday, 09/08/21 11:59 PM",
+    "dog_walks":[]
   },
   {
     "id":2,
@@ -150,7 +151,9 @@ So, we know that each dog needs to include the `name` and `image_url`. Both of t
     "dog_walks":[]
   },
   {
-    "id":5,"formatted_time":"Monday, 09/13/21  9:55 AM","dog_walks":[
+    "id":5,
+    "formatted_time":"Monday, 09/13/21  9:55 AM",
+    "dog_walks":[
       {
         "id":4,
         "pooped":null,

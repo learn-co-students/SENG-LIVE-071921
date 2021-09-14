@@ -196,7 +196,7 @@ class UsersController < ApplicationController
             :id, 
             :title
           ],
-          methods: [:reading_time]
+          methods: [:reading_time],
           include: {
             comments: {
               only: [:content],
