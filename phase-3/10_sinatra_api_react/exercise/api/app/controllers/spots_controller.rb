@@ -19,8 +19,6 @@ class SpotsController < ApplicationController
   end
 
   def serialize(objects)
-    objects.to_json(
-      include: :things
-    )
+    objects.to_json
   end
 end

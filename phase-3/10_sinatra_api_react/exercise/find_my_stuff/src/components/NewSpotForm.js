@@ -6,7 +6,8 @@ function NewSpotForm({addSpot}) {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    addSpot({name: name})
+    addSpot({ name: name })
+    setName("")
   }
   return (
     <form onSubmit={handleSubmit}>

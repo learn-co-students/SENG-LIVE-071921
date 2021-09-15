@@ -47,9 +47,7 @@ export default function ThingFinder() {
 
   const addNewSpot = (formData) => {
     
-    const body = JSON.stringify({
-      name: formData.name
-    })
+    const body = JSON.stringify(formData)
 
     fetch(`${process.env.REACT_APP_API_URL}/spots`, {
       method: 'POST',
