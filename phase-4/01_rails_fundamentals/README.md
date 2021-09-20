@@ -8,6 +8,8 @@ In this phase we will be building on our knowledge of Ruby and ActiveRecord from
 
 For our application we build together, we'll be working on a meetup clone. The app that you'll be building in exercises is a reading list application. We'll again be adding new features every day, but this time, you'll be working on the app on your own machine day by day. So, you'll want to be keeping up with the work for each day so you'll be ready to participate during the exercise the following day.
 
+For this phase, we'll also be keeping track of notes in a single [google document ](https://docs.google.com/document/d/1Pzexm_AiZYl_Cj34fjt-rShzlr91qqaKFpRk6XnKdHs/edit#) with questions that we'll answer as we progress through lecture.
+
 ## Lesson 1 Todos
 
 ### Instructions for Demo
