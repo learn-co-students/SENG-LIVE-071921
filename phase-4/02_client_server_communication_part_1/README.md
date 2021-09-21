@@ -17,7 +17,7 @@ Today's focus:
 - Users can RSVP to events
   - they can only rsvp to the same event once
 - Users can join other groups
-  - they can only join a group once.
+  - they can only join a group once
 
 Before we hop into coding today, there's a configuration options that we're going to want to change. When we start talking about strong parameters in our controllers, rails is going to do some magic with the params that we pass in via POSTMAN or fetch and add the name of our resource as a key containing all of the attributes we're posting. If we want to disable this feature, we can do so once at the beginning by editing the `config/intializers/wrap_parameters.rb` file. It currently looks like this:
 
