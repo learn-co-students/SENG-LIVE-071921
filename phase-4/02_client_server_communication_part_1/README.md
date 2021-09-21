@@ -34,6 +34,30 @@ ActiveSupport.on_load(:action_controller) do
   wrap_parameters format: []
 end
 ```
+
+## My Process for Building out features
+
+For each feature I want to figure out what request(s) are necessary to support the feature and what the response should be. From there, we can split the feature into tasks by asking what needs to change in our routes, controller and model layers in order to generate the required response from the request.
+### Request
+
+What will the fetch request look like? (Method, endpoint, headers, and body)
+### Route
+
+What route do we need to match that request? which controller action will respond?
+
+### Controller
+
+What needs to happen within our controller action? Are there relevant params for this request? If it's a POST or PATCH request, we're most likely going to want to do mass assignment, so what parameters should we allow within our strong params?
+
+### Model (database)
+
+Are there any model methods that need to be defined to support the request? (Are there any inputs from the user that don't exactly match up with columns in the associated database table?)
+
+What validations do we need to add to ensure the we're not allowing users to add invalid or incomplete data to our database?
+
+### Response
+
+Depending on how our validations go, how should our controller action respond to the request? What should be included in the json? What should the status code be?
 ## Users must provide a unique name when creating a group
 
 ### Request
