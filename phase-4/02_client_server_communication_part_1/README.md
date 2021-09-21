@@ -9,12 +9,17 @@ Today's focus:
 
 ## Meetup Clone features list
 
-- Users must provide a unique name when creating a group
-- Users must provide a :name, :location, :description, :start_time, :end_time when creating an event
+- Users can create groups
+  - groups must provide a unique name
+- Users can create events
+  - events must have a :title, :location, :description, :start_time, :end_time 
+  - The title must be unique given the same location and start time
 - Users can RSVP to events
+  - they can only rsvp to the same event once
 - Users can join other groups
+  - they can only join a group once
 
-Before we hop into coding today, there's a configuration options that we're going to want to change. When we start talking about strong parameters in our controllers, rails is going to do some magic with the params that we pass in via POSTMAN or fetch and add the name of our resource as a key containing all of the attributes we're posting. If we want to disable this feature, we can do so once at the beginning by editing the `config/intializers/wrap_parameters.rb` file. It currently looks like this:
+Before we hop into coding today, there's a configuration option that we're going to want to change. When we start talking about strong parameters in our controllers, rails is going to do some magic with the params that we pass in via POSTMAN or fetch and add the name of our resource as a key containing all of the attributes we're posting. If we want to disable this feature, we can do so once at the beginning by editing the `config/intializers/wrap_parameters.rb` file. It currently looks like this:
 
 ```rb
 ActiveSupport.on_load(:action_controller) do
@@ -29,6 +34,39 @@ ActiveSupport.on_load(:action_controller) do
   wrap_parameters format: []
 end
 ```
+
+## My Process for Building out features
+
+For each feature I want to figure out what request(s) are necessary to support the feature and what the response should be. From there, we can split the feature into tasks by asking what needs to change in our routes, controller and model layers in order to generate the required response from the request.
+### Request
+
+What will the fetch request look like? (Method, endpoint, headers, and body)
+### Route
+
+What route do we need to match that request? which controller action will respond?
+
+### Controller
+
+What needs to happen within our controller action? Are there relevant params for this request? If it's a POST or PATCH request, we're most likely going to want to do mass assignment, so what parameters should we allow within our strong params?
+
+### Model (database)
+
+Are there any model methods that need to be defined to support the request? (Are there any inputs from the user that don't exactly match up with columns in the associated database table?)
+
+What validations do we need to add to ensure the we're not allowing users to add invalid or incomplete data to our database?
+
+### Response
+
+Depending on how our validations go, how should our controller action respond to the request? What should be included in the json? What should the status code be?
+
+## A note about Status Codes
+
+| Codes | Meaning | Usage |
+|---|---|---|
+| 200-299 | OK Response | used to indicate success (200 is OK, 201 is created, 204 is no content) |
+| 300-399 | Redirect | used mainly in applications that do server side rendering (not with a react client) to indicate that the server is responding to the request by generating another request |
+| 400-499 | User Error | Used to indicate some problem with the request that the user sent. (400 is bad request, 401 is unauthorized, 403 is forbidden, 404 is not found,...) |
+| 500-599 | Server Error | Used to indicate that a request generated an error on the server side that needs to be fixed. When we see this during development, we need to check out network tab and rails server logs for a detailed error message. |
 ## Users must provide a unique name when creating a group
 
 ### Request
@@ -123,7 +161,7 @@ fetch('http://localhost:3000/groups', {
     if(response.ok) {
       return response.json()
     } else {
-      return response.json().then(Promise.reject)
+      return response.json().then(errors => Promise.reject(errors))
     }
   })
   .then(events => {
@@ -136,7 +174,7 @@ fetch('http://localhost:3000/groups', {
 
 If the response status is not in the 200-299 range, then ok will be false, so we'll want to return a rejected Promise for the response body parsed as json. We can then attach a catch callback to handle adding an error to state after it's caught by the catch callback.
 
-## Users must provide a :name, :location, :description, :start_time, :end_time when creating an event
+## Users must provide a :title, :location, :description, :start_time, :end_time when creating an event
 
 ### Request
 POST '/events'
@@ -240,7 +278,7 @@ fetch('http://localhost:3000/events',{
     if(response.ok) {
       return response.json()
     } else {
-      return response.json().then(Promise.reject)
+      return response.json().then(errors => Promise.reject(errors))
     }
   })
   .then(events => {
@@ -361,7 +399,7 @@ fetch('http://localhost:3000/user_events',{
     if(response.ok) {
       return response.json()
     } else {
-      return response.json().then(Promise.reject)
+      return response.json().then(errors => Promise.reject(errors))
     }
   })
   .then(events => {
@@ -465,7 +503,7 @@ fetch('http://localhost:3000/user_groups',{
     if(response.ok) {
       return response.json()
     } else {
-      return response.json().then(Promise.reject)
+      return response.json().then(errors => Promise.reject(errors))
     }
   })
   .then(user_group => {
@@ -476,4 +514,3 @@ fetch('http://localhost:3000/user_groups',{
   })
 ```
 
-## Reading List Application Features
