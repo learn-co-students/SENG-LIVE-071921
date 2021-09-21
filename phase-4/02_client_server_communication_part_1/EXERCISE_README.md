@@ -17,7 +17,25 @@ Today's focus:
 
 > **NOTE**: Make sure that you create a `current_user` method in your application controller like we did in the demo so you can build endpoints in a way that will be consistent with our application's functionality after we have authentication configured next week.
 
-Before getting started on the code:
+## Disable Wrap Parameters 
+
+Open the `config/intializers/wrap_parameters.rb` file. It currently looks like this:
+
+```rb
+ActiveSupport.on_load(:action_controller) do
+  wrap_parameters format: [:json]
+end
+```
+
+update it to this:
+
+```rb
+ActiveSupport.on_load(:action_controller) do
+  wrap_parameters format: []
+end
+```
+
+## Before getting started on the code:
 
 1. Create a postman account and download it if you haven’t already.  [POSTMAN](https://www.postman.com/downloads/)
 2. Using the application you created yesterday run your rails server
@@ -48,7 +66,8 @@ fetch('http://localhost:3000/books', {
 What route do you need to add to support the request above?
 
 ```rb
-
+# config/routes.rb
+# add the route
 ```
 
 ### Controller
@@ -70,7 +89,8 @@ class BooksController < ApplicationController
 end
 ```
 ### Model
-Make sure to add validations to your model
+Make sure to add validations to your model to ensure that title, description and author are present. Also, make sure that there can't be two books with the same title and the same author.
+
 ```rb
 class Book < ApplicationRecord
   has_many :user_books
@@ -117,7 +137,7 @@ fetch('http://localhost:3000/books', {
     if(response.ok) {
       return response.json()
     } else {
-      return Promise.reject(response.json())
+      return response.json().then(errors => Promise.reject(errors))
     }
   })
   .then(book => {
@@ -216,7 +236,7 @@ fetch('http://localhost:3000/user_books', {
     if(response.ok) {
       return response.json()
     } else {
-      return Promise.reject(response.json())
+      return response.json().then(errors => Promise.reject(errors))
     }
   })
   .then(user_book => {

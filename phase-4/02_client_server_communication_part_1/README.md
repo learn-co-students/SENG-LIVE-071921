@@ -14,6 +14,21 @@ Today's focus:
 - Users can RSVP to events
 - Users can join other groups
 
+Before we hop into coding today, there's a configuration options that we're going to want to change. When we start talking about strong parameters in our controllers, rails is going to do some magic with the params that we pass in via POSTMAN or fetch and add the name of our resource as a key containing all of the attributes we're posting. If we want to disable this feature, we can do so once at the beginning by editing the `config/intializers/wrap_parameters.rb` file. It currently looks like this:
+
+```rb
+ActiveSupport.on_load(:action_controller) do
+  wrap_parameters format: [:json]
+end
+```
+
+We'll update it to this:
+
+```rb
+ActiveSupport.on_load(:action_controller) do
+  wrap_parameters format: []
+end
+```
 ## Users must provide a unique name when creating a group
 
 ### Request
@@ -108,7 +123,7 @@ fetch('http://localhost:3000/groups', {
     if(response.ok) {
       return response.json()
     } else {
-      return Promise.reject(response.json())
+      return response.json().then(errors => Promise.reject(errors))
     }
   })
   .then(events => {
@@ -225,7 +240,7 @@ fetch('http://localhost:3000/events',{
     if(response.ok) {
       return response.json()
     } else {
-      return Promise.reject(response.json())
+      return response.json().then(errors => Promise.reject(errors))
     }
   })
   .then(events => {
@@ -346,7 +361,7 @@ fetch('http://localhost:3000/user_events',{
     if(response.ok) {
       return response.json()
     } else {
-      return Promise.reject(response.json())
+      return response.json().then(errors => Promise.reject(errors))
     }
   })
   .then(events => {
@@ -450,7 +465,7 @@ fetch('http://localhost:3000/user_groups',{
     if(response.ok) {
       return response.json()
     } else {
-      return Promise.reject(response.json())
+      return response.json().then(errors => Promise.reject(errors))
     }
   })
   .then(user_group => {
