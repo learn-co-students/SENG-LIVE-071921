@@ -80,6 +80,14 @@ fetch(`http://localhost:3000/groups`,{
   body: JSON.stringify({name: 'Online Software Engineering 071921'})
 })
 ```
+
+For Postman
+
+```
+{
+  "name": "Online Software Engineering 071921"
+}
+```
 ### Route
 
 ```rb
@@ -195,6 +203,19 @@ fetch('http://localhost:3000/events',{
 })
 ```
 
+For postman:
+
+```json
+{
+  "title": "Rails Client/Server Communication part 1",
+  "description": "Validations, strong parameters, mass assignment, status codes and the create action",
+  "location": "online",
+  "start_time": "2021-09-21T11:00:00",
+  "end_time": "2021-09-21T13:00:00",
+  "group_id": 1
+}
+```
+
 ### Route
 
 ```rb
@@ -303,6 +324,14 @@ fetch('http://localhost:3000/user_events', {
     event_id: 1
   })
 })
+```
+
+For postman
+
+```json
+{
+  "event_id": 1
+}
 ```
 
 ### Route
@@ -427,6 +456,14 @@ fetch('http://localhost:3000/user_groups', {
 })
 ```
 
+For postman
+
+```json
+{
+  "group_id": 1
+}
+```
+
 ### Route
 
 ```rb
@@ -513,5 +550,3 @@ fetch('http://localhost:3000/user_groups',{
     console.error(errors) // if response was not ok
   })
 ```
-
-## Reading List Application Features
