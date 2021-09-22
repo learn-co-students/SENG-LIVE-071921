@@ -8,10 +8,14 @@
 
 dakota = User.create(username: 'dakota', email: 'dakota@flatironschool.com')
 sam = User.create(username: 'sam', email: 'sam.boahen@flatironschool.com')
+marc = User.create(username: "Marc", email: "marc.majcher@flatironschool.com")
+shivang = User.create(username: "Shivang", email: "shivang.dave@flatironschool.com")
+
+
 
 group = Group.create(name: 'Online Software Engineering 071921', location: 'online')
 
-group.members = [dakota, sam]
+group.members = [dakota, sam, marc, shivang]
 
 lecture_1 = group.events.create(
   user: dakota,
