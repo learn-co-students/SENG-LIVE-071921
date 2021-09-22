@@ -8,6 +8,11 @@ class UserGroupsController < ApplicationController
     end
   end
 
+  def destroy
+    user_event = current_user.user_groups.find(params[:id])
+    user_event.destroy
+  end
+
   private
 
   def user_group_params

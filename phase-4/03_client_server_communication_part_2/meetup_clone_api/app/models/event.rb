@@ -6,5 +6,5 @@ class Event < ApplicationRecord
 
   validates :title, :description, :location, :start_time, :end_time, presence: true
 
-  validates :title, uniqueness: { scope: [:location, :start_time], message: "can't rsvp to the same event more than once"}
+  validates :title, uniqueness: { scope: [:location, :start_time], message: "Whoops! Did you already create this event?"}
 end

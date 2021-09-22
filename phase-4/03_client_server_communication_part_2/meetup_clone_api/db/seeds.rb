@@ -18,7 +18,8 @@ group.members = [dakota, sam, marc, shivang]
 lecture_1 = group.events.create(
   user: dakota,
   title: 'Rails Fundamentals',
-  description: 'first lecture in phase 4'
+  description: 'first lecture in phase 4',
+  location: "https://flatironschool.zoom.us/j/96333433409?pwd=dlNrLytiQ3lkTFBFZHQyWW9PZlFuUT09",
   start_time: 1.hour.ago,
   end_time: 1.hour.from_now
 )
