@@ -1,5 +1,7 @@
 # Phase 4 Lecture 4, Rails Serializers and Integrating React
 
+Today, we're going to pull in React for the meetup clone application and see how serializers can play a role in shaping the data we send to our frontend react client. 
+
 ```bash
 npx create-react-app client --use-npm
 ```
