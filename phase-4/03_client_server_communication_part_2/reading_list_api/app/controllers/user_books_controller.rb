@@ -9,7 +9,7 @@ class UserBooksController < ApplicationController
   end
 
   def update
-    user_book = UserBook.find(params[:id])
+    user_book = current_user.user_books.find(params[:id])
     if user_book.update(user_book_params)
       render json: user_book, status: :ok
     else
@@ -18,7 +18,7 @@ class UserBooksController < ApplicationController
   end
 
   def destroy
-    user_book = UserBook.find(params[:id])
+    user_book = current_user.user_books.find(params[:id])
     user_book.destroy
     # render the user_book so we can enable undo functionality on the frontend if we want
     render json: user_book, status: :ok 
