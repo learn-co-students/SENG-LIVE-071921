@@ -1,4 +1,9 @@
 class UserEventsController < ApplicationController
+
+  def index
+    render json: current_user.user_events, status: :ok
+  end
+
   def create
     user_event = current_user.user_events.new(user_event_params)
     if user_event.save
