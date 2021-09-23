@@ -1,10 +1,10 @@
 class BooksController < ApplicationController
   def index
-    render json: Book.all
+    render json: Book.all, each_serializer: BookIndexSerializer
   end
 
   def show
-    render json: Book.find(params[:id]), include: [:readers]
+    render json: Book.find(params[:id]), serializer: BookShowSerializer
   end
 
   def create
