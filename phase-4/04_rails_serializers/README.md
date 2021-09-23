@@ -555,11 +555,9 @@ def show
 end
 ```
 
-And then when we try again in the browser, we should see  the group, it's members and events.
+And then when we try again in the browser, we should see the group, its members and events.
 
-Notice, though, that if we return to the groups list page and check the devtools
-
-The '/groups' endpoint is now also returning all the members and events for each group. This is because AMS will use the serializer matching the name of the model by default. If we want to serialize the Index and Show endpoints separately, we can use two separate serializers:
+Notice, though, that if we return to the groups list page and check the devtools, the '/groups' endpoint is now also returning all the members and events for each group. This is because AMS will use the serializer matching the name of the model by default. If we want to serialize the Index and Show endpoints separately, we can use two separate serializers:
 
 ```bash
 rails g serializer GroupIndex
@@ -592,6 +590,8 @@ def show
   render json: Group.find(params[:id]), serializer: GroupShowSerializer
 end
 ```
+
+Note that in the index action we need to use `each_serializer` so that AMS knows to apply the serializer to each element in the collection.
 
 ## Exercise
 
