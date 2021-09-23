@@ -1,11 +1,11 @@
 class GroupsController < ApplicationController
   def index
     groups = Group.all
-    render json: groups
+    render json: groups, each_serializer: GroupIndexSerializer
   end
 
   def show
-    render json: Group.find(params[:id]), include: :events
+    render json: Group.find(params[:id]), serializer: GroupShowSerializer
   end
 
   def create
