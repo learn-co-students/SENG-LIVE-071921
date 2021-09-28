@@ -10,7 +10,7 @@ class UserBooksController < ApplicationController
 
   def update
     user_book = UserBook.find(params[:id])
-    if user_book.update(user_book_params)
+    if user_book.update(read: user_book_params[:read])
       render json: user_book, status: :ok
     else
       render json: user_book.errors, status: :unprocessable_entity
