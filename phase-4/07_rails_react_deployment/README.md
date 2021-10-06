@@ -7,6 +7,8 @@
 - Telling Heroku how to run our application
 - Setting up post release scripts that ensure our application will be able to respond to requests in production
 
+![Deployment Flow](./deployment-flow.png)
+
 Curriculum Resources:
 
 - [Deploying a Rails API to Heroku](https://github.com/learn-co-curriculum/phase-4-deploying-rails-api-to-heroku)
@@ -338,13 +340,10 @@ rails g controller fallback
 ```
 
 ```rb
-class FallbackController < ApplicationController
-  include ActionController::MimeResponds
+class FallbackController < ActionController::Base
 
   def index
-    respond_to do |format|
-      format.html { render body: Rails.root.join('public/index.html').read }
-    end
+    render file: 'public/index.html'
   end
 end
 ```
@@ -582,6 +581,8 @@ git push heroku main
 
 If you want to push up the main branch. 
 
+## How Heroku builds our Application
+
 Before we actually run this, we'll want to tell heroku that we have a node and ruby application and that we want to build the nodejs part first (this will build the app and copy it to the public directory). We can configure this via the CLI using the following comands.
 
 ```
@@ -596,6 +597,59 @@ Buildpack added. Next release on stormy-basin-85902 will use:
   1. heroku/nodejs
   2. heroku/ruby
 ```
+
+#### For node,
+
+The Heroku Node.js buildpack is employed when the application has a package.json file in the root directory.
+
+You can read more about [how Heroku supports nodeJS](https://devcenter.heroku.com/articles/nodejs-support) on their devcenter documentation.
+
+
+#### For Ruby, 
+##### Presence of Gemfile indicates a Ruby application
+##### Presence of config.ru indicates a Rack application
+##### Presence of config/environment.rb indicates a Rails 2 application
+##### Presence of config/application.rb containing the string Rails::Application indicates a Rails 3 application
+You can read more about [how Heroku supports ruby](https://devcenter.heroku.com/articles/ruby-support) on their devcenter documentation.
+
+Heroku will also set the following environment variables for Rails 5+ apps:
+
+- RAILS_ENV => “production”
+- RACK_ENV => “production”
+- RAILS_LOG_TO_STDOUT => “enabled”
+- RAILS_SERVE_STATIC_FILES => “enabled”
+### Dependency installation
+- Applications specifying Bundler 2.x in their Gemfile.lock will receive bundler: 2.2.21
+- Applications specifying Bundler 1.x in their Gemfile.lock will receive bundler: 1.17.3
+
+Heroku supports the following Ruby versions and the associated Rubygems. A supported version means that you can expect our tools and platform to work with a given version. It also means you can receive technical support. Here are our supported Ruby versions:
+
+[MRI](https://en.wikipedia.org/wiki/Ruby_MRI) (Matz's Ruby Interpreter):
+
+- 2.6.8, Rubygems: 3.0.3.1
+- 2.7.4, Rubygems: 3.1.6
+- 3.0.2, Rubygems: 3.2.22
+
+### Automatic Configuration of Postgres database on Heroku if your Gemfile contains a gem that uses Postgres
+Also,
+A dev database add-on is provisioned if the Ruby application has the a gem with a Postgres driver in the Gemfile. This populates the DATABASE_URL environment var. For more information see [Ruby Database Provisioning](https://devcenter.heroku.com/articles/ruby-database-provisioning).
+
+Currently detected Postgres driver gems:
+
+- pg
+- activerecord-jdbcpostgresql-adapter
+- jdbc-postgres
+- jdbc-postgresql
+- jruby-pg
+- rjack-jdbc-postgres
+- tgbyte-activerecord-jdbcpostgresql-adapter
+
+What this means for us is that as long as we include the "pg" gem in the Gemfile before we deploy our application for the first time, Heroku will configure a Postgres database for us and create an environment variable for our application that Rails will automatically read from to get the necessary database connection information to connect to the newly created database on Heroku postgres.
+
+>**NOTE:** Heroku only configures the add on for us on the first successful deployment, so if we somehow successfully deploy the application without adding the `"pg"` gem first, Heroku won't do this for us. This most likely won't be an issue as if you forget to update the database from sqlite you'll get a failed deployment at that point and you'll have the chance to fix the problem before the first successful deploy. This would only happen really if you removed "sqlite3" from the Gemfile and forgot to replace it with "pg"
+
+## Deploying
+
 Since we're going to deploy via a git push, we need to commit all of our changes before we can do the deployment.
 
 ```
